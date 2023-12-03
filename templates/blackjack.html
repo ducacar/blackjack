@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='styles/style.css')}}"
+    />
+    <title>Blackjack</title>
+  </head>
+  <body>
+    {% if not hands.player_final_hand %}
+    <p>{{ name }}'s hand:</p>
+    <div class="cards-container">
+      {% for card_image in hands.player_hand %}
+      <img
+        class="card"
+        src="{{ url_for('static', filename='images/' + card_image + '.png') }}"
+        alt="Card"
+      />
+      {% endfor %}
+      <p>Total: {{ hands.player_total }}</p>
+      <form action="/blackjack" method="post">
+        <input type="hidden" name="user_action" value="hit" />
+        <button class="red-button" type="submit">Hit</button>
+      </form>
+      <form action="/blackjack" method="post">
+        <input type="hidden" name="user_action" value="stand" />
+        <button class="blue-button" type="submit">Stand</button>
+      </form>
+    </div>
+    <p>Dealers hand:</p>
+    <div class="cards-container">
+      {% for card_index in range(hands.python_hand|length) %} {% if card_index
+      == 0 %}
+      <img
+        class="card"
+        src="{{ url_for('static', filename='images/' + hands.python_hand[card_index] + '.png') }}"
+        alt="Card"
+      />
+      {% else %}
+      <img
+        class="card"
+        src="{{ url_for('static', filename='images/hidden_card.png') }}"
+        alt="Hidden Card"
+      />
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>

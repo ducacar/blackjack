@@ -1,0 +1,57 @@
+<!-- results.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='styles/style.css')}}"
+    />
+    <title>Results</title>
+  </head>
+  <body>
+    <div class="final-hands-container">
+      <div class="results-container">
+        <p>Game count: {{ game_count }}</p>
+        <p>Tied games: {{ tied_game }}</p>
+        <p>{{ name }}'s wins: {{ player_wins }}</p>
+        <p>Dealer wins: {{ python_wins }}</p>
+      </div>
+      <h2>Final Hands</h2>
+      <form action="/blackjack" method="post">
+        <input type="hidden" name="user_action" value="play_again" />
+        <button class="blue-button" type="submit">Play Again</button>
+      </form>
+      <form action="/" method="get">
+        <input type="hidden" name="user_action" value="quit" />
+        <button class="red-button" type="submit">Exit</button>
+      </form>
+    </div>
+    <p>Player Coins: {{ credits }}</p>
+    <p>{{ game_result }}</p>
+    <p>{{ name }}'s final hand:</p>
+    <div class="cards-container">
+      {% for card_image in hands.player_final_hand %}
+      <img
+        class="card"
+        src="{{ url_for('static', filename='images/' + card_image + '.png') }}"
+        alt="Card"
+      />
+      {% endfor %}
+      <p>(Total: {{ hands.player_final_total }})</p>
+    </div>
+    <p>Dealers final hand:</p>
+    <div class="cards-container">
+      {% for card_image in hands.python_final_hand %}
+      <img
+        class="card"
+        src="{{ url_for('static', filename='images/' + card_image + '.png') }}"
+        alt="Card"
+      />
+      {% endfor %}
+      <p>(Total: {{ hands.python_final_total }})</p>
+    </div>
+  </body>
+</html>

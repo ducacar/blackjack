@@ -1,0 +1,71 @@
+# cards.py
+import random
+from enum import Enum
+
+
+class PlayingCard(Enum):
+    ACE_OF_CLUBS = (1, 'ACE_OF_CLUBS')
+    ACE_OF_DIAMONDS = (1, 'ACE_OF_DIAMONDS')
+    ACE_OF_HEARTS = (1, 'ACE_OF_HEARTS')
+    ACE_OF_SPADES = (1, 'ACE_OF_SPADES')
+    TWO_OF_CLUBS = (2, 'TWO_OF_CLUBS')
+    TWO_OF_DIAMONDS = (2, 'TWO_OF_DIAMONDS')
+    TWO_OF_HEARTS = (2, 'TWO_OF_HEARTS')
+    TWO_OF_SPADES = (2, 'TWO_OF_SPADES')
+    THREE_OF_CLUBS = (3, 'THREE_OF_CLUBS')
+    THREE_OF_HEARTS = (3, 'THREE_OF_HEARTS')
+    THREE_OF_DIAMONDS = (3, 'THREE_OF_DIAMONDS')
+    THREE_OF_SPADES = (3, 'THREE_OF_SPADES')
+    FOUR_OF_CLUBS = (4, 'FOUR_OF_CLUBS')
+    FOUR_OF_DIAMONDS = (4, 'FOUR_OF_DIAMONDS')
+    FOUR_OF_HEARTS = (4, 'FOUR_OF_HEARTS')
+    FOUR_OF_SPADES = (4, 'FOUR_OF_SPADES')
+    FIVE_OF_CLUBS = (5, 'FIVE_OF_CLUBS')
+    FIVE_OF_DIAMONDS = (5, 'FIVE_OF_DIAMONDS')
+    FIVE_OF_HEARTS = (5, 'FIVE_OF_HEARTS')
+    FIVE_OF_SPADES = (5, 'FIVE_OF_SPADES')
+    SIX_OF_CLUBS = (6, 'SIX_OF_CLUBS')
+    SIX_OF_DIAMONDS = (6, 'SIX_OF_DIAMONDS')
+    SIX_OF_HEARTS = (6, 'SIX_OF_HEARTS')
+    SIX_OF_SPADES = (6, 'SIX_OF_SPADES')
+    SEVEN_OF_CLUBS = (7, 'SEVEN_OF_CLUBS')
+    SEVEN_OF_DIAMONDS = (7, 'SEVEN_OF_DIAMONDS')
+    SEVEN_OF_HEARTS = (7, 'SEVEN_OF_HEARTS')
+    SEVEN_OF_SPADES = (7, 'SEVEN_OF_SPADES')
+    EIGHT_OF_CLUBS = (8, 'EIGHT_OF_CLUBS')
+    EIGHT_OF_DIAMONDS = (8, 'EIGHT_OF_DIAMONDS')
+    EIGHT_OF_HEARTS = (8, 'EIGHT_OF_HEARTS')
+    EIGHT_OF_SPADES = (8, 'EIGHT_OF_SPADES')
+    NINE_OF_CLUBS = (9, 'NINE_OF_CLUBS')
+    NINE_OF_DIAMONDS = (9, 'NINE_OF_DIAMONDS')
+    NINE_OF_HEARTS = (9, 'NINE_OF_HEARTS')
+    NINE_OF_SPADES = (9, 'NINE_OF_SPADES')
+    TEN_OF_CLUBS = (10, 'TEN_OF_CLUBS')
+    TEN_OF_DIAMONDS = (10, 'TEN_OF_DIAMONDS')
+    TEN_OF_HEARTS = (10, 'TEN_OF_HEARTS')
+    TEN_OF_SPADES = (10, 'TEN_OF_SPADES')
+    JACK_OF_CLUBS = (10, 'JACK_OF_CLUBS')
+    JACK_OF_DIAMONDS = (10, 'JACK_OF_DIAMONDS')
+    JACK_OF_HEARTS = (10, 'JACK_OF_HEARTS')
+    JACK_OF_SPADES = (10, 'JACK_OF_SPADES')
+    QUEEN_OF_CLUBS = (10, 'QUEEN_OF_CLUBS')
+    QUEEN_OF_DIAMONDS = (10, 'QUEEN_OF_DIAMONDS')
+    QUEEN_OF_HEARTS = (10, 'QUEEN_OF_HEARTS')
+    QUEEN_OF_SPADES = (10, 'QUEEN_OF_SPADES')
+    KING_OF_CLUBS = (10, 'KING_OF_CLUBS')
+    KING_OF_DIAMONDS = (10, 'KING_OF_DIAMONDS')
+    KING_OF_HEARTS = (10, 'KING_OF_HEARTS')
+    KING_OF_SPADES = (10, 'KING_OF_SPADES')
+
+def deal_card():
+    return random.choice(list(PlayingCard))
+
+def calculate_hand(hand):
+    value = sum(card.value[0] for card in hand)
+    num_aces = sum(1 for card in hand if card in (PlayingCard.ACE_OF_CLUBS, PlayingCard.ACE_OF_DIAMONDS, PlayingCard.ACE_OF_HEARTS, PlayingCard.ACE_OF_SPADES))
+
+    while value <= 11 and num_aces:
+        value += 10
+        num_aces -= 1
+
+    return value

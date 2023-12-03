@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 2rem;
+  background-color: rgb(0, 98, 0);
+  color: burlywood;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+/* cards */
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cards-container img {
+  width: 120px;
+  height: auto;
+}
+
+.cards-container p {
+  color: burlywood;
+  display: flex;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.card {
+  animation: spin 1.5s ease;
+}
+
+/* name input */
+
+.name-input {
+  padding: 18px;
+  border-radius: 12px;
+  margin: 12px;
+  font-size: large;
+}
+
+.name-input:focus::placeholder {
+  color: transparent;
+}
+
+/* buttons */
+
+button {
+  border: 2px solid #282828;
+  border-radius: 30px;
+  box-shadow: #000000 4px 4px 0 0;
+  color: #faf6ef;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.4s;
+}
+
+button:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  button {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+.start-button {
+  background-color: burlywood;
+  color: #282828;
+}
+
+.start-button:hover {
+  background-color: rgb(234, 204, 166);
+  color: #282828;
+}
+
+.blue-button {
+  background-color: #1156a1;
+}
+
+.blue-button:hover {
+  background-color: rgb(32, 32, 178);
+}
+
+.red-button {
+  background-color: #db0404;
+}
+
+.red-button:hover {
+  background-color: rgb(244, 52, 52);
+}
+
+/* final hands */
+
+.final-hands-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.results-container {
+  background-color: burlywood;
+  color: black;
+  padding: 20px;
+  border: outset;
+  border-radius: 20%;
+}
